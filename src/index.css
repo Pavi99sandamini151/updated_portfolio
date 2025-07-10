@@ -1,0 +1,71 @@
+.section-spacing {
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: none; }
+}
+.animate-fade-in {
+  animation: fade-in 0.5s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #18181b 0%, #23272f 100%);
+  color: #e5e7eb;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+.glass {
+  background: rgba(36, 39, 46, 0.75);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+  backdrop-filter: blur(10px);
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255,255,255,0.08);
+  color: #e5e7eb;
+}
+
+.modern-card {
+  border-radius: 1rem;
+  box-shadow: 0 4px 24px 0 rgba(31, 38, 135, 0.10);
+  transition: transform 0.3s, box-shadow 0.3s;
+  background: rgba(255,255,255,0.85);
+}
+.modern-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 32px 0 #22c55e33;
+}
+
+.modern-btn {
+  border-radius: 9999px;
+  padding: 0.5rem 1.5rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px 0 #22c55e22;
+  background: linear-gradient(90deg, #22c55e 0%, #38bdf8 100%);
+  color: #fff;
+  border: none;
+  transition: all 0.3s;
+}
+.modern-btn:hover {
+  filter: brightness(1.1) saturate(1.2);
+  box-shadow: 0 4px 24px 0 #22c55e33;
+}
