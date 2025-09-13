@@ -23,7 +23,7 @@ const Header: React.FC = () => {
         boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
       }}
       style={{
-        backgroundColor: "0 2px 4px rgba(0, 0, 0, 0.1)", // corrected background
+        backgroundColor: "0 2px 4px #10b981", // corrected background
         boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
         position: "sticky",
         top: 0,
@@ -43,10 +43,9 @@ const Header: React.FC = () => {
           alignItems: "center",
           justifyContent: "flex-end",
           width: "100%",
-          maxWidth: "1280px",
-          margin: "0 auto",
-          paddingLeft: "1rem",
-          paddingRight: "1rem",
+          height: "90%",
+          backgroundColor: "#043c29ff",
+          borderRadius: "20px"
         }}
       >
         <Menu
