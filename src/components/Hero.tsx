@@ -1,20 +1,11 @@
-import React, { useState } from "react";
-import { Menu, Button, Drawer, Grid } from "antd";
+import React from "react";
+import { Button, Grid } from "antd";
 import { motion } from "framer-motion";
 import { Typewriter } from "react-simple-typewriter";
-import { MenuOutlined } from "@ant-design/icons";
+import Header from "./Header";
 
-// Navigation menu items
-const menuItems = [
-  { key: "about", label: <a href="#about">About</a> },
-  { key: "experience", label: <a href="#experience">Experience</a> },
-  { key: "projects", label: <a href="#projects">Projects</a> },
-  { key: "skills", label: <a href="#skills">Skills</a> },
-  { key: "contact", label: <a href="#contact">Contact</a> },
-  { key: "blogs", label: <a href="https://pavithrasandamini.medium.com/">Blogs</a> },
-];
+const { useBreakpoint } = Grid;
 
-// Social media links
 const socialLinks = [
   {
     href: "https://github.com/Pavi99sandamini151",
@@ -73,189 +64,294 @@ const socialLinks = [
 ];
 
 const HeroSection: React.FC = () => {
-  const { useBreakpoint } = Grid;
   const screens = useBreakpoint();
-  const [drawerVisible, setDrawerVisible] = useState(false);
+
+  const containerStyle: React.CSSProperties = {
+    minHeight: "50vh",
+    display: "flex",
+    flexDirection: "column",
+  };
+
+  const headerRowStyle: React.CSSProperties = {
+    width: "100%",
+    maxWidth: "90vw",
+    margin: "0 auto",
+  };
+
+  const contentRowStyle: React.CSSProperties = {
+    maxWidth: "90vw",
+    margin: "0 auto",
+    width: "100%",
+    display: "grid",
+    gridTemplateColumns: screens.lg ? "1fr 1fr" : "1fr",
+    gap: screens.lg ? "4rem" : "2rem",
+    alignItems: "center",
+    flex: 1,
+  };
+
+  const textColumnStyle: React.CSSProperties = {
+    color: "#ffffff",
+    display: "flex",
+    flexDirection: "column",
+    gap: "2rem",
+    order: screens.lg ? 1 : 2,
+    alignItems: "left",
+    marginLeft: screens.lg ? "100px": "0px"
+  };
+
+  const imageColumnStyle: React.CSSProperties = {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    order: screens.lg ? 2 : 1,
+  };
+
+  const imageStyle: React.CSSProperties = {
+    width: "100%",
+    borderRadius: "20px",
+    objectFit: "cover",
+  };
+
+  const titleStyle: React.CSSProperties = {
+    fontSize: screens.lg ? "3.5rem" : "2.5rem",
+    fontWeight: "bold",
+    marginBottom: "1rem",
+    background: "linear-gradient(135deg, #10b981, #3b82f6)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+    backgroundClip: "text",
+  };
+
+  const subtitleStyle: React.CSSProperties = {
+    fontSize: screens.lg ? "2rem" : "1.5rem",
+    minHeight: "1.5em",
+    color: "#e5e7eb",
+    marginBottom: "2rem",
+  };
+
+  const subContentStyle: React.CSSProperties = {
+    fontSize: screens.lg ? "2rem" : "1.5rem",
+    minHeight: "1.5em",
+    color: "#e5e7eb",
+    maxWidth: "500px",
+    marginBottom: "10px",
+  };
+
+  const buttonStyle: React.CSSProperties = {
+    fontSize: "1.1rem",
+    height: "50px",
+    borderRadius: "25px",
+    background: "linear-gradient(135deg, #10b981, #059669)",
+    border: "none",
+    boxShadow: "0 4px 15px rgba(16, 185, 129, 0.3)",
+    transition: "all 0.3s ease",
+  };
+
+  const socialContainerStyle: React.CSSProperties = {
+    display: "flex",
+    gap: "1.5rem",
+    justifyContent: screens.lg ? "flex-start" : "center",
+    marginTop: "1rem",
+  };
+
+  const socialLinkStyle: React.CSSProperties = {
+    color: "#e5e7eb",
+    opacity: 0.8,
+    transition: "all 0.3s ease",
+    padding: "10px",
+    borderRadius: "50%",
+    backgroundColor: "rgba(255, 255, 255, 0.1)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  };
 
   return (
     <motion.section
       id="hero"
-      initial={{ opacity: 0, y: -50 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      style={{
-        position: "relative",
-        width: "100%",
-        height: "70vh",
-        backgroundImage: `url('/her-image.jpg')`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        overflow: "hidden",
-      }}
+      style={containerStyle}
     >
-      {/* Overlay */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundColor: "rgba(0, 0, 0, 0.5)",
-          zIndex: 1,
-        }}
-      />
-
-      {/* Header */}
-      <motion.header
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        style={{
-          position: "absolute",
-          top: 0,
-          width: "100%",
-          zIndex: 10,
-          padding: "1rem 2.5vw",
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <div style={{ color: "#fff", fontWeight: "bold", fontSize: "1.2rem", whiteSpace: "nowrap" }}>
-          
+      <div style={headerRowStyle}>
+        <div style={{ paddingTop: "25px", textAlign: "center", color: "#ffffff" }}>
+          <Header />
         </div>
+      </div>
 
-        {screens.md ? (
-          <Menu
-            mode="horizontal"
-            items={menuItems}
-            style={{
-              backgroundColor: "transparent",
-              border: "none",
-              fontSize: "1.1rem",
-              fontWeight: 500,
-              color: "#fff",
-              flexWrap: "wrap",
-              flex: "1 1 auto",
-              justifyContent: "flex-end",
-              display: "flex",
-            }}
-          />
-        ) : (
-          <>
-            <Button
-              icon={<MenuOutlined />}
-              onClick={() => setDrawerVisible(true)}
-              style={{ color: "#fff", border: "none", background: "none" }}
+      <div style={contentRowStyle}>
+        <motion.div
+          style={textColumnStyle}
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <motion.h1
+            style={titleStyle}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            Hi, I'm Pavithra
+          </motion.h1>
+          <motion.div
+            style={subContentStyle}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            Full-stack problem solver with a passion for clean code
+          </motion.div>
+          
+
+          <motion.div
+            style={subtitleStyle}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            <Typewriter
+              words={[
+                "Software Engineer",
+                "Graduate at UCSC",
+                "Tech Enthusiastic",
+                "Technical Blogger",
+              ]}
+              loop={true}
+              cursor
+              cursorStyle="|"
+              typeSpeed={70}
+              deleteSpeed={50}
+              delaySpeed={1500}
             />
-            <Drawer
-              title="Menu"
-              placement="right"
-              onClose={() => setDrawerVisible(false)}
-              open={drawerVisible}
-            >
-              <Menu
-                mode="vertical"
-                items={menuItems}
-                onClick={() => setDrawerVisible(false)}
-              />
-            </Drawer>
-          </>
-        )}
-      </motion.header>
+          </motion.div>
 
-      {/* Hero Content */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        style={{
-          position: "relative",
-          zIndex: 2,
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          textAlign: "center",
-          color: "#fff",
-          gap: "1.5rem",
-          padding: "0 1rem",
-        }}
-      >
-        <motion.h1
-          style={{ fontSize: "2.5rem", fontWeight: "bold" }}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          >
+            <motion.div
+              whileHover={{ 
+                scale: 1.05,
+                y: -2,
+                transition: {
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 20
+                }
+              }}
+              whileTap={{ 
+                scale: 0.95,
+                transition: {
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 25
+                }
+              }}
+              animate={{
+                y: [0, -5, 0],
+                transition: {
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: [0.42, 0, 0.58, 1],
+                  repeatType: "reverse"
+                }
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 200,
+                damping: 15
+              }}
+            >
+              <Button
+                type="primary"
+                size="large"
+                style={{
+                  ...buttonStyle,
+                  transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-2px)";
+                  e.currentTarget.style.boxShadow = "0 12px 30px rgba(16, 185, 129, 0.5)";
+                  e.currentTarget.style.background = "linear-gradient(135deg, #059669, #047857)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "0 4px 15px rgba(16, 185, 129, 0.3)";
+                  e.currentTarget.style.background = "linear-gradient(135deg, #10b981, #059669)";
+                }}
+              >
+                <motion.a
+                  href="/pavithra_sandamini.pdf"
+                  download="pavithra_sandamini.pdf"
+                  style={{ color: "#fff", textDecoration: "none", display: "block" }}
+                  whileHover={{
+                    scale: 1.02,
+                    transition: { 
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 20,
+                      duration: 0.3
+                    }
+                  }}
+                >
+                  <motion.span
+                    initial={{ opacity: 1 }}
+                    animate={{
+                      opacity: [1, 0.85, 1],
+                      transition: {
+                        duration: 4,
+                        repeat: Infinity,
+                        ease: [0.4, 0, 0.6, 1],
+                        repeatType: "reverse"
+                      }
+                    }}
+                  >
+                    Download My Resume
+                  </motion.span>
+                </motion.a>
+              </Button>
+            </motion.div>
+
+            <div style={socialContainerStyle}>
+              {socialLinks.map((link) => (
+                <motion.a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={link.label}
+                  style={socialLinkStyle}
+                  whileHover={{ 
+                    scale: 1.1,
+                    backgroundColor: "rgba(16, 185, 129, 0.2)",
+                    color: "#10b981"
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {link.icon}
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Image Column */}
+        <motion.div
+          style={imageColumnStyle}
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          Hi, I'm Pavithra
-        </motion.h1>
-
-        <motion.p
-          style={{ fontSize: "2.0rem", minHeight: "1.5em" }}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <Typewriter
-            words={[
-              "Software Engineer",
-              "Graduate at UCSC",
-              "Tech Enthusiastic",
-              "Technical Blogger",
-            ]}
-            loop={true}
-            cursor
-            cursorStyle="|"
-            typeSpeed={70}
-            deleteSpeed={50}
-            delaySpeed={1500}
+          <img
+            src="/her-image.png"
+            alt="Pavithra Sandamini"
+            style={imageStyle}
           />
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            gap: "1rem",
-          }}
-        >
-          <Button type="primary" style={{ fontSize: "1rem" }}>
-            <a
-              href="/pavithra_sandamini.pdf"
-              download="pavithra_sandamini.pdf"
-              style={{ color: "#fff", textDecoration: "none" }}
-            >
-              Download my Resume
-            </a>
-          </Button>
-
-          <div style={{ display: "flex", gap: "1.25rem" }}>
-            {socialLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={link.label}
-                style={{
-                  color: "#fff",
-                  opacity: 0.85,
-                  transition: "opacity 0.2s",
-                }}
-                onMouseOver={(e) => (e.currentTarget.style.opacity = "1")}
-                onMouseOut={(e) => (e.currentTarget.style.opacity = "0.85")}
-              >
-                {link.icon}
-              </a>
-            ))}
-          </div>
         </motion.div>
-      </motion.div>
+      </div>
     </motion.section>
   );
 };
