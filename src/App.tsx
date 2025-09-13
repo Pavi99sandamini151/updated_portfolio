@@ -16,7 +16,6 @@ const App: React.FC = () => {
         style={{
           paddingLeft: 16,
           paddingRight: 16,
-          paddingTop: 32,
           paddingBottom: 32,
           display: 'flex',
           flexDirection: 'column',
