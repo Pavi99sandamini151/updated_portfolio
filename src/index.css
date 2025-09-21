@@ -2,10 +2,19 @@
   margin-top: 0.2rem;
   margin-bottom: 0.2rem;
 }
+
 @keyframes fade-in {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: none; }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
+
 .animate-fade-in {
   animation: fade-in 0.5s ease;
 }
@@ -24,13 +33,27 @@ html {
   box-sizing: border-box;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
   font-family: 'Inter', sans-serif;
   background: linear-gradient(135deg, #18181b 0%, #23272f 100%);
   color: #e5e7eb;
+}
+
+/* Header spacing compensation */
+body {
+  padding-top: 0;
+  /* Removed excessive padding */
+}
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-padding-top: 100px;
+  /* Account for fixed header when scrolling to anchors */
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
@@ -40,7 +63,7 @@ html, body, #root {
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
   backdrop-filter: blur(10px);
   border-radius: 1.5rem;
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   color: #e5e7eb;
 }
 
@@ -48,8 +71,9 @@ html, body, #root {
   border-radius: 1rem;
   box-shadow: 0 4px 24px 0 rgba(31, 38, 135, 0.10);
   transition: transform 0.3s, box-shadow 0.3s;
-  background: rgba(255,255,255,0.85);
+  background: rgba(255, 255, 255, 0.85);
 }
+
 .modern-card:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 32px 0 #22c55e33;
@@ -65,6 +89,7 @@ html, body, #root {
   border: none;
   transition: all 0.3s;
 }
+
 .modern-btn:hover {
   filter: brightness(1.1) saturate(1.2);
   box-shadow: 0 4px 24px 0 #22c55e33;
