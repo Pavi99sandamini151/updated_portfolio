@@ -65,27 +65,26 @@ const Projects: React.FC = () => {
   };
 
   const titleStyle: React.CSSProperties = {
-    fontSize: screens.lg ? "4rem" : screens.md ? "3.5rem" : "2.8rem",
-    fontWeight: "700",
-    background: isDarkMode
-      ? "linear-gradient(135deg, #ffffff 0%, #e2e8f0 50%, #cbd5e1 100%)"
-      : "linear-gradient(135deg, #1e293b 0%, #475569 50%, #64748b 100%)",
+    fontSize: screens.lg ? "clamp(3rem, 4vw, 4rem)" : screens.md ? "2.8rem" : "2.2rem",
+    fontWeight: "800",
+    background: "linear-gradient(135deg, #10b981 0%, #3b82f6 50%, #8b5cf6 100%)",
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
     backgroundClip: "text",
     marginBottom: "1rem",
     letterSpacing: "-0.02em",
     lineHeight: "1.1",
+    position: "relative",
   };
 
   const subtitleStyle: React.CSSProperties = {
-    fontSize: screens.lg ? "1.25rem" : "1.1rem",
+    fontSize: screens.lg ? "1.3rem" : screens.md ? "1.2rem" : "1.1rem",
     color: isDarkMode ? "#94a3b8" : "#64748b",
     fontWeight: "400",
     maxWidth: "600px",
     margin: "0 auto",
     lineHeight: "1.6",
-    opacity: 0.8,
+    opacity: 0.9,
   };
 
   // Projects Grid Container
@@ -94,11 +93,11 @@ const Projects: React.FC = () => {
     zIndex: 10,
     display: "grid",
     gridTemplateColumns: screens.lg
-      ? "repeat(auto-fit, minmax(400px, 1fr))"
+      ? "repeat(auto-fit, minmax(420px, 1fr))"
       : screens.md
-        ? "repeat(auto-fit, minmax(350px, 1fr))"
+        ? "repeat(auto-fit, minmax(360px, 1fr))"
         : "1fr",
-    gap: screens.lg ? "2rem" : "1.5rem",
+    gap: screens.lg ? "2.5rem" : screens.md ? "2rem" : "1.5rem",
     width: "100%",
   };
 
@@ -120,11 +119,13 @@ const Projects: React.FC = () => {
     padding: screens.lg ? "2.5rem" : screens.md ? "2rem" : "1.5rem",
     boxShadow: isDarkMode
       ? `
-        0 20px 40px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1)`
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 0 0 1px rgba(16, 185, 129, 0.05)`
       : `
         0 20px 40px rgba(0, 0, 0, 0.08),
-        inset 0 1px 0 rgba(255, 255, 255, 0.8)`,
+        inset 0 1px 0 rgba(255, 255, 255, 0.9),
+        0 0 0 1px rgba(16, 185, 129, 0.08)`,
     transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
     cursor: "pointer",
     overflow: "hidden",
@@ -244,8 +245,8 @@ const Projects: React.FC = () => {
             viewport={ { once: true, margin: "-5%" } }
             whileHover={ {
               scale: 1.02,
-              y: -8,
-              transition: { duration: 0.3 }
+              y: -12,
+              transition: { duration: 0.4, ease: "easeOut" }
             } }
             style={ projectCardStyle }
             onMouseEnter={ (e) => {
